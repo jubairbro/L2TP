@@ -1,0 +1,53 @@
+#!/bin/bash
+# vpn-expiry-checker: Check user expiry and optionally remove expired users
+
+USER_FILE="/etc/ppp/chap-secrets"
+DATE_FORMAT="+%Y-%m-%d"
+
+echo "━━━━━━━━━━ Checking Expired VPN Users ━━━━━━━━━━"
+
+# Expect user data in format: username password IP expiry_date (e.g. 2025-07-01)
+if [ ! -f "$USER_FILE" ]; then
+    echo "User file not found!"
+    exit 1
+fi
+
+today=$(date +%Y-%m-%d)
+expired_users=()
+
+while read -r line; do
+    # skip comments and empty lines
+    [[ "$line" =~ ^#.*$ || -z "$line" ]] && continue
+    # Assume format: username  server  password  expiry_date(optional)
+    username=$(echo "$line" | awk '{print $1}')
+    password=$(echo "$line" | awk '{print $3}')
+    expiry_date=$(echo "$line" | awk '{print $4}')
+
+    if [[ -n "$expiry_date" ]]; then
+        if [[ "$expiry_date" < "$today" ]]; then
+            expired_users+=("$username (expired on $expiry_date)")
+        fi
+    fi
+done < "$USER_FILE"
+
+if [ ${#expired_users[@]} -eq 0 ]; then
+    echo "No expired users found."
+else
+    echo "Expired users:"
+    for u in "${expired_users[@]}"; do
+        echo " - $u"
+    done
+
+    read -p "Do you want to remove expired users? (y/n): " yn
+    if [[ "$yn" =~ ^[Yy]$ ]]; then
+        for u in "${expired_users[@]}"; do
+            username=$(echo "$u" | awk '{print $1}')
+            sed -i "/^$username\s/d" "$USER_FILE"
+            echo "Removed user: $username"
+        done
+        echo "Expired users removed. Restart VPN service."
+        systemctl restart strongswan
+    fi
+fi
+
+read -p "Press Enter to return to menu..."
