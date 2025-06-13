@@ -13,3 +13,5 @@ echo "Removing configuration files..."
 rm -rf /etc/ipsec* /etc/ppp /var/run/ppp-server
 
 echo "Uninstall complete."
+echo -e "\e[1;34m WAIT 30 SEC TO REBOOT...\e[0m"
+echo -e "\e[1;33m If want to stop reboot click ctlr + c to stop \e[0m"
