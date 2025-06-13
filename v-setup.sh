@@ -115,3 +115,9 @@ done
 echo -e "\n\e[1;32m✅ Installation complete!\e[0m"
 echo -e "➡️ To Run Tool type: \e[1;33mvpn\e[0m"
 echo -e "\e[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
+echo -e "\e[1;34mWait 10 sec to reboot.....\e[0m"
+sleep 10
+reboot
+
+
+
