@@ -36,4 +36,5 @@ case $menu in
 0) exit ;;
 *) echo -e "${RED}Invalid option!${NC}" && sleep 1 && vpn ;;
 esac
+sleep 6
 vpn
