@@ -13,7 +13,8 @@ Supports L2TP/IPSec with complete user control.
 ## 📥 One-Line Installer
 
 ```bash
-wget -qO v-setup.sh https://raw.githubusercontent.com/jubairbro/L2TP/main/v-setup.sh && chmod +x v-setup.sh && ./v-setup.sh
+wget -qO v-setup.sh https://raw.githubusercontent.com/jubairbro/L2TP/main/v-setup.sh && chmod +x v-setup.sh && ./v-setup.sh```
+**
 
 
 ---
