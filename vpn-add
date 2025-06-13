@@ -1,0 +1,30 @@
+#!/bin/bash
+
+read -p "Enter Username: " username
+read -p "Enter Password: " password
+read -p "Validity (days): " validity
+
+# Check if user already exists
+if grep -q "^\"$username\" " /etc/ppp/chap-secrets; then
+    echo "User already exists!"
+    exit 1
+fi
+
+# Expiry date
+exp_date=$(date -d "$validity days" +%Y-%m-%d)
+
+# Add to chap-secrets
+echo "\"$username\" l2tpd \"$password\" *" >> /etc/ppp/chap-secrets
+
+# Save expiry info
+echo "$username $exp_date" >> /etc/vpn-users.txt
+
+echo -e "\nUser Created Successfully!"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Username: $username"
+echo "Password: $password"
+echo "Expires : $exp_date"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# Restart service to apply
+systemctl restart xl2tpd
