@@ -20,3 +20,6 @@ for conn in $conn_list; do
 done
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+sleep 40
+vpn
+
