@@ -1,6 +1,38 @@
 #!/bin/bash
 
-vpn (Main Menu) Script
+# Colors
+RED='\e[1;31m'
+GREEN='\e[1;32m'
+CYAN='\e[1;36m'
+NC='\e[0m'
 
-while true; do clear echo -e "\e[1;36m━━━━━━━━━━━━━━ VPN MENU ━━━━━━━━━━━━━━\e[0m" echo -e "[1] ➕ Add VPN User" echo -e "[2] ❌ Remove VPN User" echo -e "[3] 📃 List All VPN Users" echo -e "[4] 🧍‍♂️ Show Online Connections" echo -e "[5] 📑 Show VPN Logs" echo -e "[6] 🔄 Restart VPN Services" echo -e "[7] 🗃️ Backup Config & Users" echo -e "[8] ♻️ Restore Config & Users" echo -e "[0] ❌ Exit" echo -e "\e[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m" read -rp "Choose [0-8]: " choice case "$choice" in 1) vpn-add ;; 2) vpn-del ;; 3) vpn-list ;; 4) vpn-online ;; 5) vpn-log ;; 6) vpn-restart ;; 7) vpn-backup ;; 8) vpn-restore ;; 0) echo "Exiting..." && exit ;; *) echo "Invalid input" && sleep 1 ;; esac done
+clear
+echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo -e "       L2TP VPN Control Panel"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}1.${NC} Add New User"
+echo -e "${GREEN}2.${NC} Remove User"
+echo -e "${GREEN}3.${NC} List All Users"
+echo -e "${GREEN}4.${NC} Online Users"
+echo -e "${GREEN}5.${NC} Show Logs"
+echo -e "${GREEN}6.${NC} Restart VPN Services"
+echo -e "${GREEN}7.${NC} Backup Users"
+echo -e "${GREEN}8.${NC} Restore Users"
+echo -e "${GREEN}9.${NC} Installation Check"
+echo -e "${GREEN}0.${NC} Exit"
+echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+read -rp "Select an option [0-9]: " menu
 
+case $menu in
+1) vpn-add ;;
+2) vpn-del ;;
+3) vpn-list ;;
+4) vpn-online ;;
+5) vpn-log ;;
+6) vpn-restart ;;
+7) vpn-backup ;;
+8) vpn-restore ;;
+9) vpn-install-check ;;
+0) exit ;;
+*) echo -e "${RED}Invalid option!${NC}" && sleep 1 && vpn ;;
+esac
