@@ -1,0 +1,5 @@
+#!/bin/bash
+
+vpn (Main Menu) Script
+
+while true; do clear echo -e "\e[1;36m━━━━━━━━━━━━━━ VPN MENU ━━━━━━━━━━━━━━\e[0m" echo -e "[1] ➕ Add VPN User" echo -e "[2] ❌ Remove VPN User" echo -e "[3] 📃 List All VPN Users" echo -e "[4] 🧍‍♂️ Show Online Connections" echo -e "[5] 📑 Show VPN Logs" echo -e "[6] 🔄 Restart VPN Services" echo -e "[7] 🗃️ Backup Config & Users" echo -e "[8] ♻️ Restore Config & Users" echo -e "[0] ❌ Exit" echo -e "\e[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m" read -rp "Choose [0-8]: " choice case "$choice" in 1) vpn-add ;; 2) vpn-del ;; 3) vpn-list ;; 4) vpn-online ;; 5) vpn-log ;; 6) vpn-restart ;; 7) vpn-backup ;; 8) vpn-restore ;; 0) echo "Exiting..." && exit ;; *) echo "Invalid input" && sleep 1 ;; esac done
