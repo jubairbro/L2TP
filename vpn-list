@@ -16,3 +16,5 @@ while read -r line; do
 done < /etc/vpn-users.txt
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+sleep 30
+vpn
