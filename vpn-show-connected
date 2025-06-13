@@ -51,3 +51,6 @@ else
 fi
 
 read -p "Press Enter to return to menu..."
+
+sleep 5
+vpn
