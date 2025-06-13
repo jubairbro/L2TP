@@ -1,8 +1,3 @@
-
----
-
-✅ README.md
-
 # 🔐 L2TP/IPSec VPN Auto Installer (Ubuntu)
 
 A fully automated VPN setup and user management system.  
@@ -17,7 +12,6 @@ wget -qO v-setup.sh https://raw.githubusercontent.com/jubairbro/L2TP/main/v-setu
 **
 
 
----
 
 📚 Commands
 
@@ -59,7 +53,7 @@ GitHub: github.com/jubairbro
 
 ---
 
-© Jubairbro 2025 – All rights reserved.
+##© Jubairbro 2025 – All rights reserved.
 Feel free to share, with credit 🐸
 
----
+
