@@ -1,0 +1,23 @@
+#!/bin/bash
+
+read -p "Enter Username to Remove: " username
+
+# Remove from chap-secrets
+if grep -q "^\"$username\" " /etc/ppp/chap-secrets; then
+    sed -i "/^\"$username\" /d" /etc/ppp/chap-secrets
+    echo "Removed from chap-secrets."
+else
+    echo "User not found in chap-secrets."
+fi
+
+# Remove from expiry list
+if grep -q "^$username " /etc/vpn-users.txt; then
+    sed -i "/^$username /d" /etc/vpn-users.txt
+    echo "Removed from vpn-users.txt."
+else
+    echo "User not found in vpn-users.txt."
+fi
+
+# Restart service to apply changes
+systemctl restart xl2tpd
+echo -e "\n✅ User \"$username\" removed successfully."
