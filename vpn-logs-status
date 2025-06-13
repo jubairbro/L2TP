@@ -10,3 +10,5 @@ journalctl -u strongswan -n 30 --no-pager
 
 echo ""
 read -p "Press Enter to return to menu..."
+sleep 5
+vpn 
