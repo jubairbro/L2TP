@@ -9,7 +9,7 @@ Supports L2TP/IPSec with complete user control.
 
 ```bash
 wget -qO v-setup.sh https://raw.githubusercontent.com/jubairbro/L2TP/main/v-setup.sh && chmod +x v-setup.sh && ./v-setup.sh```
-**
+##⏳
 
 
 
