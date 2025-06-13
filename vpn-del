@@ -21,3 +21,5 @@ fi
 # Restart service to apply changes
 systemctl restart xl2tpd
 echo -e "\n✅ User \"$username\" removed successfully."
+sleep 5
+vpn
