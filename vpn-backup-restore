@@ -1,0 +1,30 @@
+#!/bin/bash
+# vpn-backup-restore: Backup and restore VPN configuration files
+
+CONFIG_DIR="/etc/ipsec.d"
+BACKUP_DIR="/root/vpn_backup_$(date +%F_%H-%M-%S)"
+
+echo "1) Backup VPN Configurations"
+echo "2) Restore VPN Configurations"
+echo "3) Exit"
+read -p "Choose an option: " option
+
+if [ "$option" == "1" ]; then
+    mkdir -p "$BACKUP_DIR"
+    cp -r /etc/ipsec* "$BACKUP_DIR"
+    cp -r /etc/ppp "$BACKUP_DIR"
+    echo "Backup completed at $BACKUP_DIR"
+
+elif [ "$option" == "2" ]; then
+    read -p "Enter backup directory path to restore from: " restore_dir
+    if [ -d "$restore_dir" ]; then
+        cp -r "$restore_dir/ipsec"* /etc/
+        cp -r "$restore_dir/ppp" /etc/
+        echo "Restore completed. Please restart VPN services."
+        systemctl restart strongswan
+    else
+        echo "Backup directory not found."
+    fi
+else
+    echo "Exiting..."
+fi
