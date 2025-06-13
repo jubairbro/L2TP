@@ -1,0 +1,12 @@
+#!/bin/bash
+# vpn-logs-status: Show VPN service status and recent logs
+
+echo "━━━━━━━━━━ VPN Service Status ━━━━━━━━━━"
+systemctl status strongswan --no-pager
+
+echo ""
+echo "━━━━━━━━━━ Last 30 lines from VPN logs ━━━━━━━━━━"
+journalctl -u strongswan -n 30 --no-pager
+
+echo ""
+read -p "Press Enter to return to menu..."
