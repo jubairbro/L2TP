@@ -1,0 +1,15 @@
+#!/bin/bash
+# vpn-uninstall: Completely remove VPN and configs
+
+echo "Stopping VPN services..."
+systemctl stop strongswan
+systemctl disable strongswan
+
+echo "Removing packages..."
+apt purge strongswan* xl2tpd* -y
+apt autoremove -y
+
+echo "Removing configuration files..."
+rm -rf /etc/ipsec* /etc/ppp /var/run/ppp-server
+
+echo "Uninstall complete."
