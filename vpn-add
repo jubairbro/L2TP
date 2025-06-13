@@ -28,3 +28,4 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━"
 
 # Restart service to apply
 systemctl restart xl2tpd
+vpn
