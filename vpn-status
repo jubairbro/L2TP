@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo -e "\n━━━━━━━━━━ VPN Connection Status ━━━━━━━━━━"
+echo "Username       IP Address       Connected Since"
+echo "────────────────────────────────────────────"
+
+# IPsec এবং xl2tpd কানেকশন তথ্য বের করার জন্য, l2tpd ও ipsec লগ ফাইল বা active sessions দেখানো হয়।
+
+# strongswan চালালে active connections দেখতে:
+conn_list=$(ipsec status | grep "ESTABLISHED" | awk '{print $1}')
+
+if [ -z "$conn_list" ]; then
+    echo "No active VPN connections found."
+    exit 0
+fi
+
+for conn in $conn_list; do
+    # এখানে শুধু conn নাম দেখানো হচ্ছে, চাইলে IP ও সময় বের করতে পারেন।
+    echo "$conn"
+done
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
