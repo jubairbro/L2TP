@@ -28,3 +28,5 @@ elif [ "$option" == "2" ]; then
 else
     echo "Exiting..."
 fi
+sleep 5
+vpn
