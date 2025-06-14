@@ -1,5 +1,31 @@
 #!/bin/bash
 clear
+#!/bin/bash
+
+# Detect OS and version
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+    VER=$VERSION_ID
+else
+    echo "Cannot detect OS. Exiting..."
+    exit 1
+fi
+
+# Supported OS check
+if [[ "$OS" != "ubuntu" ]]; then
+    echo "This installer supports only Ubuntu."
+    exit 1
+fi
+
+# Supported version check (20.04 or 22.04)
+if [[ "$VER" != "20.04" && "$VER" != "22.04" ]]; then
+    echo "Unsupported Ubuntu version: $VER"
+    echo "Please use Ubuntu 20.04 or 22.04."
+    exit 1
+fi
+
+echo "OS check passed: $OS $VER"
 echo -e "\e[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
 echo -e "     🔧 L2TP/IPSec VPN Installer"
 echo -e "\e[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
